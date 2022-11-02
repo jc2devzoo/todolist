@@ -4,9 +4,9 @@
 
     <img class="img-responsive" src="@/assets/lista.png" alt="CoffeTagTodo">
 
-    <form>
+    <form @submit.prevent="addTarefa(tarefa)">
       <div class="input-group">
-          <input type="text" class="form-input" placeholder="adicionar uma tarefa">
+          <input type="text" v-model="tarefa.description" class="form-input" placeholder="adicionar uma tarefa">
           <button class="btn btn-success input-group-btn"> adicionar <i class="icon icon-arrow-right"></i></button>
       </div>
     </form>
@@ -38,6 +38,16 @@
 export default {
   name: 'App',
 
+  data(){
+    return {tarefas: [], tarefa: {checked: false}};
+  },
+
+  methods: {
+    addTarefa(tarefa){
+      tarefa.id = Date.now();
+      this.tarefas.push(tarefa)
+    }
+  }
 }
 </script>
 
