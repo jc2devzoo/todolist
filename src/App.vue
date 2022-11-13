@@ -25,10 +25,15 @@
         </li>
       </ul>
 
-      {{tarefas}}
+      <div class="tarefa-list">
+        
+      </div>
 
     </form>
 
+    <div class="tarefa-list">
+      <tarefa v-for=" t in tarefas" :key="t.id" :tarefa="t"></tarefa>
+    </div>
     
 
   </div>
@@ -47,6 +52,7 @@
   name:'App',
   components:{
 
+    // eslint-disable-next-line vue/no-unused-components
     Tarefa
     
   },
