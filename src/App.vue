@@ -32,7 +32,7 @@
     </form>
 
     <div class="tarefa-list">
-      <tarefa v-for=" t in tarefas" :key="t.id" :tarefa="t"></tarefa>
+      <tarefa v-for=" t in tarefas" :key="t.id" @toggle="toggleTarefa" :tarefa="t"></tarefa>
     </div>
     
 
@@ -65,18 +65,31 @@
     addTarefa(tarefa){
       tarefa.id = Date.now();
       this.tarefas.push(tarefa)
+      this.tarefa = {checked:false};
+    },
+
+    toggleTarefa(tarefa){
+      const index = this.tarefas.findIndex(item => item.id === tarefa.id)
+      if (index > -1){
+        const checked = !this.tarefas[index].checked;
+        this.tarefas[index].checked = checked;
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-  img {
+img {
     max-width: 90px;
     margin:0 auto;
   }
 
   .input-group{
     margin-top: 3vh;
+  }
+
+  .tarefa-list{
+      padding-top: 2rem;
   }
 </style>
