@@ -25,15 +25,13 @@
         </li>
       </ul>
 
-      <div class="tarefa-list">
-        
-      </div>
+        <div class="tarefa-list">
+          <tarefa v-for=" t in tarefas" :key="t.id" @toggle="toggleTarefa"  @remove="removeTarefa" :tarefa="t"></tarefa>
+        </div>
 
     </form>
 
-    <div class="tarefa-list">
-      <tarefa v-for=" t in tarefas" :key="t.id" @toggle="toggleTarefa" :tarefa="t"></tarefa>
-    </div>
+  
     
 
   </div>
@@ -71,10 +69,18 @@
     toggleTarefa(tarefa){
       const index = this.tarefas.findIndex(item => item.id === tarefa.id)
       if (index > -1){
-        const checked = !this.tarefas[index].checked;
-        this.tarefas[index].checked = checked;
+        this.tarefas.splice(index, 1);
       }
+    },
+
+    removeTarefa(tarefa){
+    const index = this.tarefas.findIndex(item => item.id === tarefa.id)
+    if (index > -1) {
+      const checked = !this.tarefas[index].checked;
+      this.tarefas[index].checked = checked;
     }
+  },
+
   }
 }
 </script>

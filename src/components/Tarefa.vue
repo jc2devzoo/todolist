@@ -10,7 +10,7 @@
                 <span v-if="tarefa.checked"> Desmarcar</span>
                 <span v-else>Concluido</span>
             </button>
-            <button class="btn btn-error"> REMOVER</button>
+            <button  @click="$emit('remove',tarefa)" class="btn btn-error"> Remover</button>
          </div>
          
     </div>
@@ -28,5 +28,8 @@
 
 </script>
 <style scoped>
-
+    .checked {
+        text-decoration: line-through;
+        color: lightslategray;
+    }
 </style>
